@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <add key="OPILO_URL" value="http://bpanel.opilo.com"/>
+    <add key="OPILO_USERNAME" value="your_web_service_username"/>
+    <add key="OPILO_PASSWORD" value="your_web_service_password"/>
+    <add key="PANEL_LINE" value="a_line_number_that_belongs_to_your_panel"/>
+    <add key="DESTINATION" value="your_best_friend_mobile_number"/>
+
+    <add key="OPILO_USERNAME_WS_DISABLED" value="2"/>
+    <add key="OPILO_PASSWORD_WS_DISABLED" value="2"/>
+  </appSettings>
+</configuration>
