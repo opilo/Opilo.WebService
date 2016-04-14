@@ -56,8 +56,8 @@
     <Compile Include="Response\SMSId.cs" />
     <Compile Include="Response\Status.cs" />
     <Compile Include="Response\ValidationException.cs" />
-    <Compile Include="V2\Bin\Out.cs" />
-    <Compile Include="V2\Bin\Parser.cs" />
+    <Compile Include="V2\Helpers\Out.cs" />
+    <Compile Include="V2\Helpers\Parser.cs" />
     <Compile Include="V2\OpiloClient.cs" />
   </ItemGroup>
   <ItemGroup>

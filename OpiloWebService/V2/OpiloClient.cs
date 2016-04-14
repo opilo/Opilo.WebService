@@ -2,7 +2,7 @@
 using OpiloWebService.Configs;
 using OpiloWebService.Request;
 using OpiloWebService.Response;
-using OpiloWebService.V2.Bin;
+using OpiloWebService.V2.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Net;
