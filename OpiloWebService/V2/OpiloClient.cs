@@ -16,6 +16,13 @@ namespace OpiloWebService.V2
 
         protected HttpClient client;
 
+        public OpiloClient(string userName, string password, string serverBaseUrl = "http://bpanel.opilo.com")
+        {
+            ConnectionConfig config = new ConnectionConfig(serverBaseUrl);
+            this.account = new Account(userName, password);
+            this.client = config.getHttpClient();
+        }
+
         public OpiloClient(ConnectionConfig config, Account account)
         {
             this.account = account;
