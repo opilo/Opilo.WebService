@@ -43,16 +43,15 @@ namespace OpiloWebService.Response
                     for (int i = 0; i < jErrors.Count; i++) {
                         JObject jError = (JObject)jErrors["ids." + i.ToString()];
                         Dictionary<string,string> dic = new Dictionary<string,string>();
-                        if (jError["Integer"] != null)
+                        if (jError != null && jError["Integer"] != null)
                             dic.Add("Integer", "");
-                        if (jError["Min"] != null)
+                        if (jError != null && jError["Min"] != null)
                             dic.Add("Min", ((JArray)jError["Min"])[0].ToString());
                         errors.Add(dic);
                     }
                 }
             }
             catch (Exception ex) { }
-            
         }
 
         public string HttpResponseBody
