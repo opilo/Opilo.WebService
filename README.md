@@ -64,7 +64,8 @@ while (true)
 List<int> opiloIds = yourDatabaseRepository.getArrayOfOpiloIdsOfMessagesSentViaSendSMSFunction();
 CheckStatusResponse response = client.checkStatus(opiloIds);
 List<Status> statusArray = CheckStatusResponse.StatusArray;
-for (int i = 0; i < statusArray.Count; i++) {
+for (int i = 0; i < statusArray.Count; i++)
+{
     //process and store the status code statusArray[i].Code for the SMS with Id opiloIds[i]
     //Take a look at constants in OpiloWebService.Response.Status class and their meanings
 }
@@ -82,11 +83,14 @@ Prepare to catch the exceptions appropriately.
 ```c#
 using OpiloWebService.Response;
 ...
-try {
+try
+{
     ...
     client.sendSMS(...);
     ...
-} catch (CommunicationException e) {
+}
+catch (CommunicationException e)
+{
     //process the exception by comparing e.Code against constants defined in CommunicationException class.
 }
 ```
