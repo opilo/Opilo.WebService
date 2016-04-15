@@ -89,9 +89,9 @@ namespace OpiloWebService.Test.Integration
             catch (ValidationException ex)
             {
                 failed = true;
-                List<Dictionary<string, string>> errors = ex.Errors;
+                Dictionary<string, Dictionary<string, string>> errors = ex.Errors;
                 Assert.AreEqual(1, errors.Count);
-                Assert.AreEqual("1", errors[0]["Min"]);
+                Assert.AreEqual("1", errors["ids.0"]["Min"]);
             }
             Assert.IsTrue(failed);
         }

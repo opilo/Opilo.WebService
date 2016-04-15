@@ -9,7 +9,7 @@ namespace OpiloWebService.Response
     {
         private string httpResponseBody = "";
 
-        private List<Dictionary<string, string>> errors = new List<Dictionary<string, string>>();
+        private Dictionary<string, Dictionary<string, string>> errors = new Dictionary<string, Dictionary<string, string>>();
 
         public ValidationException(int code, string httpResponseBody)
             : base(code)
@@ -19,7 +19,7 @@ namespace OpiloWebService.Response
         }
 
         public ValidationException(string message, int code, string httpResponseBody)
-            : base(message,code)
+            : base(message, code)
         {
             this.httpResponseBody = httpResponseBody;
             extractErrors();
@@ -40,14 +40,15 @@ namespace OpiloWebService.Response
                 if (jResponse["errors"] != null)
                 {
                     JObject jErrors = (JObject)jResponse["errors"];
-                    for (int i = 0; i < jErrors.Count; i++) {
-                        JObject jError = (JObject)jErrors["ids." + i.ToString()];
-                        Dictionary<string,string> dic = new Dictionary<string,string>();
-                        if (jError != null && jError["Integer"] != null)
+                    foreach (JProperty prop in jErrors.Properties())
+                    {
+                        JObject jError = (JObject)jErrors[prop.Name];
+                        Dictionary<string, string> dic = new Dictionary<string, string>();
+                        if (jError["Integer"] != null)
                             dic.Add("Integer", "");
-                        if (jError != null && jError["Min"] != null)
+                        if (jError["Min"] != null)
                             dic.Add("Min", ((JArray)jError["Min"])[0].ToString());
-                        errors.Add(dic);
+                        this.errors.Add(prop.Name, dic);
                     }
                 }
             }
@@ -62,7 +63,7 @@ namespace OpiloWebService.Response
             }
         }
 
-        public List<Dictionary<string, string>> Errors
+        public Dictionary<string, Dictionary<string, string>> Errors
         {
             get
             {
