@@ -49,7 +49,6 @@ namespace OpiloWebService.Test.Integration
         }
 
         [Test]
-        [Ignore("")]
         public void testSendMultipleSMS()
         {
             int initCredit = this.client.getCredit().SmsPageCount;
