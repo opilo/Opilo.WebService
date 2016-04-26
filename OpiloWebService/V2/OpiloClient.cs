@@ -39,6 +39,16 @@ namespace OpiloWebService.V2
             return Parser.prepareSendResponse(response);
         }
 
+        public SendSMSResponse sendSMS(OutgoingSMS message)
+        {
+            List<OutgoingSMS> messages = new List<OutgoingSMS>();
+            messages.Add(message);
+            List<SendSMSResponse> response = new List<SendSMSResponse>();
+            response = this.sendSMS(messages);
+
+            return response[0];
+        }
+
         public Inbox checkInbox(int minId = 0, DateTime? minReceivedAt = null, string read = Inbox.INBOX_ALL, string lineNumber = null)
         {
             string query = "?";
