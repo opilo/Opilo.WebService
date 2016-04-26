@@ -42,8 +42,8 @@ namespace OpiloWebService.Test.Integration
             OutgoingSMS message = new OutgoingSMS(PANEL_LINE, DESTINATION, "V2::testSendSingleSMS()");
             SendSMSResponse response = client.sendSMS(message);
             Assert.IsInstanceOf<SMSId>(response);
-            CheckStatusResponse status = this.client.checkStatus(new List<int>() { int.Parse(((SMSId)response).Id) });
-            Assert.AreEqual(1, status.StatusArray.Count);
+            Status status = this.client.checkStatus(int.Parse(((SMSId)response).Id) );
+            Assert.IsInstanceOf<Status>(status);
             int finalCredit = this.client.getCredit().SmsPageCount;
             Assert.LessOrEqual(initCredit - finalCredit, 1);
         }

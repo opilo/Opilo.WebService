@@ -79,6 +79,14 @@ namespace OpiloWebService.V2
             return Parser.prepareStatusArray(response);
         }
 
+        public Status checkStatus(int opiloId)
+        {
+            List<int> opiloIds = new List<int>();
+            opiloIds.Add(opiloId);
+            CheckStatusResponse response = this.checkStatus(opiloIds);
+            return response.StatusArray[0];
+        }
+
         public Credit getCredit()
         {
             string query = "?" + Out.attachAuth(this.account, "");
