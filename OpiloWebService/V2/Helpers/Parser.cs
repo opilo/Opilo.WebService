@@ -112,7 +112,13 @@ namespace OpiloWebService.V2.Helpers
                     if (jItem["error"] != null)
                         prepared.Add(new SendError(int.Parse(jItem["error"].ToString())));
                     else if (jItem["id"] != null)
-                        prepared.Add(new SMSId(jItem["id"].ToString()));
+                    {
+                        bool isDuplicated = false;
+                        if(jItem["duplicate"] != null)
+                            isDuplicated = (bool) jItem["duplicate"];
+                        
+                        prepared.Add(new SMSId(jItem["id"].ToString(), isDuplicated));
+                    }
                     else
                         throw new CommunicationException(string.Format("Unprocessable Response: {0}", rawResponse), CommunicationException.UNPROCESSABLE_RESPONSE);
                 }

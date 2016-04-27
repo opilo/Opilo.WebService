@@ -8,9 +8,12 @@ namespace OpiloWebService.Response
     {
         private string id;
 
-        public SMSId(string id)
+        private bool duplicate;
+
+        public SMSId(string id, bool duplicate = false)
         {
             this.id = id;
+            this.duplicate = duplicate;
         }
 
         public string Id
@@ -18,6 +21,14 @@ namespace OpiloWebService.Response
             get
             {
                 return this.id;
+            }
+        }
+
+        public bool IsDuplicated 
+        {
+            get
+            {
+                return this.duplicate;
             }
         }
     }

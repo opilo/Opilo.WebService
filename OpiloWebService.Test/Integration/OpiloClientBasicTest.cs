@@ -42,10 +42,39 @@ namespace OpiloWebService.Test.Integration
             OutgoingSMS message = new OutgoingSMS(PANEL_LINE, DESTINATION, "V2::testSendSingleSMS()");
             SendSMSResponse response = client.sendSMS(message);
             Assert.IsInstanceOf<SMSId>(response);
-            Status status = this.client.checkStatus(int.Parse(((SMSId)response).Id) );
+            Status status = this.client.checkStatus(int.Parse(((SMSId)response).Id));
             Assert.IsInstanceOf<Status>(status);
             int finalCredit = this.client.getCredit().SmsPageCount;
             Assert.LessOrEqual(initCredit - finalCredit, 1);
+        }
+
+        [Test]
+        public void testSendSmsWithDuplicateUidBatch()
+        {
+            string uid = Guid.NewGuid().ToString();
+            List<OutgoingSMS> messages = new List<OutgoingSMS>();
+            messages.Add(new OutgoingSMS(PANEL_LINE, DESTINATION, "V2::testSendSmsWithDuplicateUidBatch()", uid));
+            messages.Add(new OutgoingSMS(PANEL_LINE, DESTINATION, "V2::testSendSmsWithDuplicateUidBatch()", uid));
+            List<SendSMSResponse> result = this.client.sendSMS(messages);
+            Assert.IsInstanceOf<SMSId>(result[0]);
+            Assert.IsInstanceOf<SMSId>(result[1]);
+            Assert.IsFalse(((SMSId)result[0]).IsDuplicated);
+            Assert.IsTrue(((SMSId)result[1]).IsDuplicated);
+        }
+
+        [Test]
+        public void testSendSmsWithDuplicateUidSingle()
+        {
+            string uid = Guid.NewGuid().ToString();
+            OutgoingSMS message = new OutgoingSMS(PANEL_LINE, DESTINATION, "V2::testSendSmsWithDuplicateUidSingle()", uid);
+            SendSMSResponse result = this.client.sendSMS(message);
+            Assert.IsInstanceOf<SMSId>(result);
+            Assert.IsFalse(((SMSId)result).IsDuplicated);
+
+            message = new OutgoingSMS(PANEL_LINE, DESTINATION, "V2::testSendSmsWithDuplicateUidSingle()", uid);
+            result = this.client.sendSMS(message);
+            Assert.IsInstanceOf<SMSId>(result);
+            Assert.IsTrue(((SMSId)result).IsDuplicated);
         }
 
         [Test]

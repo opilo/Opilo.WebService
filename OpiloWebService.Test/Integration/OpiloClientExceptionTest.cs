@@ -39,6 +39,7 @@ namespace OpiloWebService.Test.Integration
         }
 
         [Test]
+        [Category("403")]
         public void test403()
         {
             ConnectionConfig config = new ConnectionConfig(OPILO_URL);
