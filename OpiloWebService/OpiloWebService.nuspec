@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://raw.githubusercontent.com/opilo/Opilo.WebService/master/LICENSE.md</licenseUrl>
+    <projectUrl>https://github.com/opilo/Opilo.WebService</projectUrl>
+    <iconUrl>http://www.opilo.com/wp-content/themes/opilo/v2/img/logo/logo.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Opilo messaging sms webservice</tags>
+  </metadata>
+</package>
