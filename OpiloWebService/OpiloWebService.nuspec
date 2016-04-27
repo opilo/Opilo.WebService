@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
+    <id>Opilo.WebService</id>
     <version>$version$</version>
-    <title>$title$</title>
+    <title>Opilo.WebService</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>https://raw.githubusercontent.com/opilo/Opilo.WebService/master/LICENSE.md</licenseUrl>
