@@ -10,7 +10,7 @@ namespace OpiloWebService.Request
 
         private DateTime? sendAt;
 
-        public OutgoingSMS(string from, string to, string text, string userDefinedId = "", DateTime? sendAt = null)
+        public OutgoingSMS(string from, string to, string text, string userDefinedId = null, DateTime? sendAt = null)
             : base(from, to, text)
         {
             this.userDefinedId = userDefinedId;

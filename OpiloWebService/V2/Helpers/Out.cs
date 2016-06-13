@@ -80,7 +80,9 @@ namespace OpiloWebService.V2.Helpers
 
                 JObject msg = new JObject();
                 msg.Add("to", message.To);
-                msg.Add("uid", message.UserDefinedId);
+
+                if (message.UserDefinedId != null)
+                    msg.Add("uid", message.UserDefinedId);
 
                 if (result["defaults"]["from"].ToString() != message.From)
                     msg.Add("from", message.From);

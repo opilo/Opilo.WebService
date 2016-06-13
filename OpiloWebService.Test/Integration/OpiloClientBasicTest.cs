@@ -63,6 +63,20 @@ namespace OpiloWebService.Test.Integration
         }
 
         [Test]
+        public void testSendSmsWithDuplicateUidBatchWhenUidIsEmptyString()
+        {
+            string uid = "";
+            List<OutgoingSMS> messages = new List<OutgoingSMS>();
+            messages.Add(new OutgoingSMS(PANEL_LINE, DESTINATION, "V2::testSendSmsWithDuplicateUidBatch()", uid));
+            messages.Add(new OutgoingSMS(PANEL_LINE, DESTINATION, "V2::testSendSmsWithDuplicateUidBatch()", uid));
+            List<SendSMSResponse> result = this.client.sendSMS(messages);
+            Assert.IsInstanceOf<SMSId>(result[0]);
+            Assert.IsInstanceOf<SMSId>(result[1]);
+            Assert.IsFalse(((SMSId)result[0]).IsDuplicated);
+            Assert.IsTrue(((SMSId)result[1]).IsDuplicated);
+        }
+
+        [Test]
         public void testSendSmsWithDuplicateUidSingle()
         {
             string uid = Guid.NewGuid().ToString();
